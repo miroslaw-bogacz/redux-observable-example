@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchPeopleList, fetchDarkSideOfTheForcePeople } from '../store/people.actions';
+import * as Actions from '../store/people.actions';
 import { PersonComponent } from '../components/person.component';
 import { SearchComponent } from '../components/search.component';
 import { ButtonComponent } from '../components/button.component';
@@ -22,7 +22,6 @@ export class People extends Component {
   }
 
   handleDarkSideOfTheForceClick(text) {
-    console.log('here')
     this.props.fetchDarkSideOfTheForcePeople(text);
   }
 
@@ -31,6 +30,7 @@ export class People extends Component {
       <div>
         <SearchComponent onChange={this.handleSearchOnChange}/>
         <ButtonComponent onChange={this.handleDarkSideOfTheForceClick} />
+
         <table>
           <thead>
             <tr>
@@ -41,12 +41,14 @@ export class People extends Component {
               <th>Gender</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody data-testid="people-collection">
             {this.props.list.map((item) => (
               <PersonComponent key={item.name} person={item} />
             ))}
           </tbody>
         </table>
+
+        {this.props.isPending && <span data-testid="pending-text">is pending</span>}
       </div>
     );
   }
@@ -54,11 +56,12 @@ export class People extends Component {
 
 const mapStateToProps = (state) => ({
   list: state.peopleList.models,
+  isPending: state.peopleList.isPending,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-  { fetchPeopleList, fetchDarkSideOfTheForcePeople },
+  { fetchPeopleList: Actions.fetchPeopleList, fetchDarkSideOfTheForcePeople: Actions.fetchDarkSideOfTheForcePeople },
   dispatch
 );
 
-export const PeopleComponent = connect(mapStateToProps, mapDispatchToProps)(People);
+export const PeopleContainer = connect(mapStateToProps, mapDispatchToProps)(People);

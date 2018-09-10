@@ -13,7 +13,7 @@ export class ButtonComponent extends React.Component {
 
   render() {
     return (
-      <button onClick={this.handleClick}>The dark side of the force</button>
+      <button data-testid="button-fetch-dark-side" onClick={this.handleClick}>The dark side of the force</button>
     );
   }
 }

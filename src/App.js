@@ -1,13 +1,13 @@
 import * as React from 'react';
 import './App.css';
-import { PeopleComponent } from './people/containers/people.container';
+import { PeopleContainer } from './people/containers/people.container';
 
 
 
 class App extends React.Component {
   render() {
     return (
-      <PeopleComponent />
+      <PeopleContainer />
     );
   }
 }

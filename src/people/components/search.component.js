@@ -19,7 +19,7 @@ export class SearchComponent extends React.Component {
 
   render() {
     return (
-      <input onChange={this.handleSearchChange} />
+      <input onChange={this.handleSearchChange} placeholder="find by name" />
     );
   }
 }
