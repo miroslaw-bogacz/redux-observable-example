@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchPeopleList } from '../store/people.actions';
+import { fetchPeopleList, fetchDarkSideOfTheForcePeople } from '../store/people.actions';
 import { PersonComponent } from '../components/person.component';
 import { SearchComponent } from '../components/search.component';
+import { ButtonComponent } from '../components/button.component';
 
 export class People extends Component {
   constructor(props) {
     super(props);
     this.handleSearchOnChange = this.handleSearchOnChange.bind(this);
+    this.handleDarkSideOfTheForceClick = this.handleDarkSideOfTheForceClick.bind(this);
   }
 
   componentDidMount() {
@@ -19,11 +21,16 @@ export class People extends Component {
     this.props.fetchPeopleList(text);
   }
 
+  handleDarkSideOfTheForceClick(text) {
+    console.log('here')
+    this.props.fetchDarkSideOfTheForcePeople(text);
+  }
+
   render() {
     return (
       <div>
         <SearchComponent onChange={this.handleSearchOnChange}/>
-
+        <ButtonComponent onChange={this.handleDarkSideOfTheForceClick} />
         <table>
           <thead>
             <tr>
@@ -50,7 +57,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-  { fetchPeopleList },
+  { fetchPeopleList, fetchDarkSideOfTheForcePeople },
   dispatch
 );
 

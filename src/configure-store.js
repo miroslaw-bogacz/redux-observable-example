@@ -1,10 +1,11 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
-import { fetchPeopleListEpic } from './people/store/people.epics';
+import { fetchPeopleListEpic, fetchDarkSideOfTheForcePeople } from './people/store/people.epics';
 import { peopleListReducers } from './people/store/people.reducers';
 
 const epics = combineEpics(
   fetchPeopleListEpic,
+  fetchDarkSideOfTheForcePeople
 );
 
 const reducers = combineReducers({

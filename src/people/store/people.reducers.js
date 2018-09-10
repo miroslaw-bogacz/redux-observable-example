@@ -1,5 +1,6 @@
 import {
   FETCH_PEOPLE_LIST,
+  FETCH_DARK_SIDE_OF_THE_FORCE_PEOPLE,
   FETCH_PEOPLE_LIST_ERROR,
   FETCH_PEOPLE_LIST_SUCCESS,
 } from './people.actions';
@@ -30,6 +31,7 @@ const fetchPeopleListErrorReducer = (action) => (state) => ({
 
 const reducers = {
   [FETCH_PEOPLE_LIST]: fetchPeopleListReducer,
+  [FETCH_DARK_SIDE_OF_THE_FORCE_PEOPLE]: fetchPeopleListReducer,
   [FETCH_PEOPLE_LIST_SUCCESS]: fetchPeopleListSuccessReducer,
   [FETCH_PEOPLE_LIST_ERROR]: fetchPeopleListErrorReducer,
 };
